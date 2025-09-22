@@ -19,7 +19,14 @@ class Trie {
 
     insert(word) {
         // TODO Insert word symbol by symbol
+        this.insertRecursively(word, this.root)
+    }
 
+    insertRecursively(word, current) {
+        if (word.length == 0) return current.isWord = true
+
+        current.children[word[0]] ??= new TrieNode(word[0])
+        this.insertRecursively(word.substring(1), current.children[word[0]])
     }
 
     hasNode(word){
